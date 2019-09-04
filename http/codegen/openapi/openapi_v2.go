@@ -27,6 +27,7 @@ type (
 		SecurityDefinitions map[string]*SecurityDefinition `json:"securityDefinitions,omitempty" yaml:"securityDefinitions,omitempty"`
 		Tags                []*Tag                         `json:"tags,omitempty" yaml:"tags,omitempty"`
 		ExternalDocs        *ExternalDocs                  `json:"externalDocs,omitempty" yaml:"externalDocs,omitempty"`
+		Extensions          map[string]interface{}         `json:"-" yaml:"-"`
 	}
 
 	// Info provides metadata about the API. The metadata can be used by the clients if needed,
@@ -290,6 +291,7 @@ type (
 	}
 
 	// These types are used in marshalJSON() to avoid recursive call of json.Marshal().
+	_V2                 V2
 	_Info               Info
 	_Path               Path
 	_Operation          Operation
@@ -320,6 +322,11 @@ func marshalJSON(v interface{}, extensions map[string]interface{}) ([]byte, erro
 		return nil, err
 	}
 	return merged, nil
+}
+
+// MarshalJSON returns the JSON encoding of i.
+func (v V2) MarshalJSON() ([]byte, error) {
+	return marshalJSON(_V2(v), v.Extensions)
 }
 
 // MarshalJSON returns the JSON encoding of i.
@@ -373,6 +380,11 @@ func marshalYAML(v interface{}, extensions map[string]interface{}) (interface{},
 		unmarshaled[k] = v
 	}
 	return unmarshaled, nil
+}
+
+// MarshalYAML returns value which marshaled in place of the original value
+func (v V2) MarshalYAML() (interface{}, error) {
+	return marshalYAML(_V2(v), v.Extensions)
 }
 
 // MarshalYAML returns value which marshaled in place of the original value

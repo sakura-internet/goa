@@ -279,6 +279,7 @@ var ExtensionDSL = func() {
 			Meta("swagger:extension:x-test-schema", "Result")
 		})
 	})
+	Meta("swagger:extension:x-test-root", "Root")
 	var _ = API("test", func() {
 		Server("test", func() {
 			Host("localhost", func() {

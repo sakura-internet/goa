@@ -32,6 +32,9 @@ type (
 		Creations []*TypeMap
 		// Schemes list the registered security schemes.
 		Schemes []*SchemeExpr
+		// Meta is a set of key/value pairs with semantic that is
+		// specific to each generator.
+		Meta MetaExpr
 	}
 
 	// MetaExpr is a set of key/value pairs
