@@ -1,17 +1,33 @@
-swagger: "2.0"
-info:
-  title: ""
-  version: ""
-  x-test-api: API
-host: goa.design
 consumes:
 - application/json
 - application/xml
 - application/gob
-produces:
-- application/json
-- application/xml
-- application/gob
+definitions:
+  TestServiceTestEndpointRequestBody:
+    example:
+      string: ""
+    properties:
+      string:
+        example: ""
+        type: string
+        x-test-schema: Payload
+    title: TestServiceTestEndpointRequestBody
+    type: object
+  TestServiceTestEndpointResponseBody:
+    example:
+      string: ""
+    properties:
+      string:
+        example: ""
+        type: string
+        x-test-schema: Result
+    title: TestServiceTestEndpointResponseBody
+    type: object
+host: goa.design
+info:
+  title: ""
+  version: ""
+  x-test-api: API
 paths:
   /:
     post:
@@ -34,27 +50,11 @@ paths:
       - testService
       x-test-operation: Operation
     x-test-foo: bar
-definitions:
-  TestServiceTestEndpointRequestBody:
-    title: TestServiceTestEndpointRequestBody
-    type: object
-    properties:
-      string:
-        example: ""
-        type: string
-        x-test-schema: Payload
-    example:
-      string: ""
-  TestServiceTestEndpointResponseBody:
-    title: TestServiceTestEndpointResponseBody
-    type: object
-    properties:
-      string:
-        example: ""
-        type: string
-        x-test-schema: Result
-    example:
-      string: ""
+produces:
+- application/json
+- application/xml
+- application/gob
+swagger: "2.0"
 tags:
 - description: Description of Backend
   externalDocs:
@@ -63,3 +63,4 @@ tags:
   name: Backend
   x-data:
     foo: bar
+x-test-root: Root

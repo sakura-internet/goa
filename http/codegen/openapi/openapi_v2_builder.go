@@ -59,6 +59,7 @@ func NewV2(root *expr.RootExpr, h *expr.HostExpr) (*V2, error) {
 		Tags:                tags,
 		SecurityDefinitions: securitySpecFromExpr(root),
 		ExternalDocs:        docsFromExpr(root.API.Docs),
+		Extensions:          ExtensionsFromExpr(root.Meta),
 	}
 
 	for _, he := range root.API.HTTP.Errors {
